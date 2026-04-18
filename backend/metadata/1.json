@@ -1,7 +1,7 @@
 {
   "name": "Sword",
   "description": "A finely crafted iron sword. Reliable in battle and favored by warriors across the kingdom.",
-  "image": "https://ipfs.io/ipfs/QmYourImageHash/sword.jpg",
+  "image": "https://ipfs.io/ipfs/bafybeidzznurbfj2i43jlmujpdkrv7ryxgxy4ja7fntmzixwyd7276onlq/1.jpg",
   "attributes": [
     { "trait_type": "Type", "value": "Weapon" },
     { "trait_type": "Rarity", "value": "Common" },

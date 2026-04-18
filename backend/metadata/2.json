@@ -1,7 +1,7 @@
 {
   "name": "Shield",
   "description": "A sturdy wooden shield reinforced with iron bands. Blocks incoming attacks and protects the bearer.",
-  "image": "https://ipfs.io/ipfs/QmYourImageHash/shield.jpg",
+  "image": "https://ipfs.io/ipfs/bafybeidzznurbfj2i43jlmujpdkrv7ryxgxy4ja7fntmzixwyd7276onlq/2.jpg",
   "attributes": [
     { "trait_type": "Type", "value": "Armor" },
     { "trait_type": "Rarity", "value": "Common" },

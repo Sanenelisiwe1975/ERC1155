@@ -8,7 +8,6 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 contract GameItems is ERC1155, Ownable {
     using Strings for uint256;
 
-    // Token IDs (you can define as many as you want)
     uint256 public constant GOLD = 0;
     uint256 public constant SWORD = 1;
     uint256 public constant SHIELD = 2;
@@ -21,18 +20,15 @@ contract GameItems is ERC1155, Ownable {
         Ownable(msg.sender) 
     {
         baseURI = _baseURI;
-        // Example initial mint to deployer
         _mint(msg.sender, GOLD, 10000 ether, "");        // Fungible currency
         _mint(msg.sender, SWORD, 500, "");               // Semi-fungible
         _mint(msg.sender, LEGENDARY_HELM, 10, "");       // Rare
     }
 
-    // Override uri to support {id}.json pattern (best for ERC1155)
     function uri(uint256 tokenId) public view override returns (string memory) {
         return string(abi.encodePacked(baseURI, tokenId.toString(), ".json"));
     }
 
-    // Admin mint single
     function mint(address to, uint256 id, uint256 amount, bytes memory data) 
         public onlyOwner 
     {

@@ -1,7 +1,7 @@
 {
   "name": "Legendary Helm",
   "description": "An ancient helmet forged by the greatest smiths of a lost civilization. Said to grant the wearer unmatched focus in battle.",
-  "image": "https://ipfs.io/ipfs/QmYourImageHash/legendary_helm.jpg",
+  "image": "https://ipfs.io/ipfs/bafybeidzznurbfj2i43jlmujpdkrv7ryxgxy4ja7fntmzixwyd7276onlq/3.jpg",
   "attributes": [
     { "trait_type": "Type", "value": "Armor" },
     { "trait_type": "Rarity", "value": "Legendary" },

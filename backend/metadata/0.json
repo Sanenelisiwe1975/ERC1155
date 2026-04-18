@@ -1,7 +1,7 @@
 {
   "name": "Gold",
   "description": "The primary in-game currency. Used to trade, upgrade equipment, and unlock new content across the realm.",
-  "image": "https://ipfs.io/ipfs/QmYourImageHash/gold.jpg",
+  "image": "https://ipfs.io/ipfs/bafybeidzznurbfj2i43jlmujpdkrv7ryxgxy4ja7fntmzixwyd7276onlq/0.jpg",
   "decimals": 18,
   "attributes": [
     { "trait_type": "Type", "value": "Currency" },
