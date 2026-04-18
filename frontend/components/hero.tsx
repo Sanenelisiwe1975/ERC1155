@@ -164,14 +164,16 @@ export function Hero() {
                 Explore Collection
                 <ArrowRight className="w-4 h-4" aria-hidden />
               </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-full sm:w-auto"
+              <a
+                href="https://sepolia.etherscan.io/address/0x4fe1a696F3d826B9bcb7E616a81762c709DD5C47"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="View smart contract on Etherscan"
               >
-                View Contract
-              </Button>
+                <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                  View Contract
+                </Button>
+              </a>
             </motion.div>
 
             {/* Social proof */}

@@ -51,11 +51,17 @@ export function Footer() {
             </p>
 
             {/* Contract address */}
-            <div className="mt-4 flex items-center gap-2 text-xs font-mono text-subtle hover:text-muted transition-colors">
+            <a
+              href="https://sepolia.etherscan.io/address/0x4fe1a696F3d826B9bcb7E616a81762c709DD5C47"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 flex items-center gap-2 text-xs font-mono text-subtle hover:text-muted transition-colors"
+              aria-label="View contract on Etherscan"
+            >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" aria-hidden />
-              <span>0x4f3c…8a2d</span>
+              <span>0x4fe1…c47</span>
               <ExternalLink className="w-3 h-3" aria-hidden />
-            </div>
+            </a>
           </div>
 
           {/* Link groups */}
