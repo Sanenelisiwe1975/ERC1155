@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { Sparkles, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -182,8 +183,9 @@ export function TokenCard({ token, index }: TokenCardProps) {
         </Button>
       </div>
 
-      {mintOpen && (
-        <MintModal token={token} onClose={() => setMintOpen(false)} />
+      {mintOpen && createPortal(
+        <MintModal token={token} onClose={() => setMintOpen(false)} />,
+        document.body
       )}
     </motion.article>
   );
