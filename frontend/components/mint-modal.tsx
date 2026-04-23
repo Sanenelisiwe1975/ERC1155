@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAccount, useConnect } from "wagmi";
+import { useQueryClient } from "@tanstack/react-query";
 import { X, Loader2, CheckCircle2, ExternalLink, Wallet, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
