@@ -5,7 +5,7 @@ import { ArrowRight, Coins, Sword, Shield, Crown } from "lucide-react";
 import { TokenCard, type TokenData } from "@/components/token-card";
 import { Button } from "@/components/ui/button";
 
-const TOKENS: TokenData[] = [
+export const TOKENS: TokenData[] = [
   {
     id: 0,
     name: "Gold",
