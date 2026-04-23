@@ -14,6 +14,16 @@ function shortAddress(addr: string) {
   return `${addr.slice(0, 6)}…${addr.slice(-4)}`;
 }
 
+function formatBalance(raw: string, decimals = 0): string {
+  if (decimals === 0) return Number(raw).toLocaleString();
+  const divisor = BigInt(10) ** BigInt(decimals);
+  const whole = BigInt(raw) / divisor;
+  const frac = BigInt(raw) % divisor;
+  if (frac === 0n) return whole.toLocaleString();
+  const fracStr = frac.toString().padStart(decimals, "0").replace(/0+$/, "").slice(0, 4);
+  return `${whole.toLocaleString()}.${fracStr}`;
+}
+
 export function Inventory() {
   const { address, isConnected } = useAccount();
   const [mounted, setMounted] = useState(false);
@@ -156,10 +166,10 @@ export function Inventory() {
                       Balance
                     </p>
                     <p
-                      className="text-2xl font-bold tabular-nums"
+                      className="text-lg font-bold tabular-nums break-all"
                       style={{ color: owned ? token.color : undefined }}
                     >
-                      {balance}
+                      {formatBalance(balance, token.decimals)}
                     </p>
                   </div>
 

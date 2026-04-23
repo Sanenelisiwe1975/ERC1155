@@ -19,6 +19,7 @@ export const TOKENS: TokenData[] = [
     borderColor: "border-amber-500/20",
     glowColor: "hover:shadow-amber-500/10",
     supply: "10,000+",
+    decimals: 18,
     attributes: [
       { label: "Type", value: "Fungible" },
       { label: "Decimals", value: "18" },

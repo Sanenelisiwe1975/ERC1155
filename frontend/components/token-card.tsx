@@ -21,6 +21,7 @@ export interface TokenData {
   borderColor: string;
   glowColor: string;
   supply: string;
+  decimals?: number;
   attributes: { label: string; value: string }[];
 }
 
