@@ -29,6 +29,7 @@ interface MintModalProps {
 export function MintModal({ token, onClose }: MintModalProps) {
   const { address, isConnected } = useAccount();
   const { connect, connectors, isPending: isConnecting } = useConnect();
+  const queryClient = useQueryClient();
   const [amount, setAmount] = useState(1);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [txHash, setTxHash] = useState("");
@@ -44,6 +45,8 @@ export function MintModal({ token, onClose }: MintModalProps) {
       const result = await mintToken(address, token.id, amount);
       setTxHash(result.txHash);
       setStatus("success");
+      // Refresh the inventory balances immediately after a successful mint
+      queryClient.invalidateQueries({ queryKey: ["balances", address] });
     } catch (err) {
       setErrorMsg(err instanceof Error ? err.message : "Mint failed");
       setStatus("error");
@@ -71,6 +74,7 @@ export function MintModal({ token, onClose }: MintModalProps) {
         >
           {/* Close button */}
           <button
+            type="button"
             onClick={onClose}
             className="absolute top-4 right-4 z-10 text-white/40 hover:text-white/80 transition-colors"
             aria-label="Close modal"
@@ -152,6 +156,7 @@ export function MintModal({ token, onClose }: MintModalProps) {
                   <p className="text-xs uppercase tracking-wider text-subtle mb-2">Amount</p>
                   <div className="flex items-center gap-3">
                     <button
+                      type="button"
                       className="w-9 h-9 rounded-lg border border-white/10 text-foreground hover:bg-white/5 transition-colors text-xl font-medium flex items-center justify-center disabled:opacity-40"
                       onClick={() => setAmount((a) => Math.max(1, a - 1))}
                       disabled={amount <= 1 || status === "loading"}
@@ -163,6 +168,7 @@ export function MintModal({ token, onClose }: MintModalProps) {
                       {amount}
                     </span>
                     <button
+                      type="button"
                       className="w-9 h-9 rounded-lg border border-white/10 text-foreground hover:bg-white/5 transition-colors text-xl font-medium flex items-center justify-center disabled:opacity-40"
                       onClick={() => setAmount((a) => a + 1)}
                       disabled={status === "loading"}
