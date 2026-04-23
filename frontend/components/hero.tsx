@@ -2,6 +2,7 @@
 
 import { motion, type Transition } from "framer-motion";
 import { ArrowRight, Coins, Sword, Shield, Crown, ChevronDown } from "lucide-react";
+import { useAccount, useConnect } from "wagmi";
 import { Button } from "@/components/ui/button";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -75,6 +76,10 @@ const fadeUpVariants = {
 };
 
 export function Hero() {
+  const { isConnected } = useAccount();
+  const { connect, connectors, isPending } = useConnect();
+  const metamaskConnector = connectors.find((c) => c.name === "MetaMask") ?? connectors[0];
+
   return (
     <section
       className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-20"
@@ -118,7 +123,7 @@ export function Hero() {
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass border border-white/10 text-xs font-medium text-muted mb-6"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" aria-hidden />
-              Live on Ethereum Mainnet · ERC-1155
+              Live on Sepolia Testnet · ERC-1155
             </motion.div>
 
             {/* Headline */}
@@ -160,10 +165,23 @@ export function Hero() {
                 size="lg"
                 className="w-full sm:w-auto shadow-xl shadow-gold/20"
                 aria-label="Explore the item collection"
+                onClick={() => document.getElementById("collection")?.scrollIntoView({ behavior: "smooth" })}
               >
                 Explore Collection
                 <ArrowRight className="w-4 h-4" aria-hidden />
               </Button>
+              {!isConnected && (
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  aria-label="Connect wallet"
+                  onClick={() => connect({ connector: metamaskConnector })}
+                  disabled={isPending}
+                >
+                  {isPending ? "Connecting…" : "Connect Wallet"}
+                </Button>
+              )}
               <a
                 href="https://sepolia.etherscan.io/address/0x4fe1a696F3d826B9bcb7E616a81762c709DD5C47"
                 target="_blank"

@@ -2,9 +2,14 @@
 
 import { motion } from "framer-motion";
 import { Wallet, ArrowRight, Swords } from "lucide-react";
+import { useAccount, useConnect } from "wagmi";
 import { Button } from "@/components/ui/button";
 
 export function CallToAction() {
+  const { isConnected } = useAccount();
+  const { connect, connectors, isPending } = useConnect();
+  const metamaskConnector = connectors.find((c) => c.name === "MetaMask") ?? connectors[0];
+
   return (
     <section
       aria-label="Call to action"
