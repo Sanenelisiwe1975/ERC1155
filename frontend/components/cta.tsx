@@ -55,23 +55,43 @@ export function CallToAction() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <Button
-              size="xl"
-              className="w-full sm:w-auto shadow-2xl shadow-gold/25"
-              aria-label="Connect wallet to start"
+            {!isConnected ? (
+              <Button
+                size="xl"
+                className="w-full sm:w-auto shadow-2xl shadow-gold/25"
+                aria-label="Connect wallet to start"
+                onClick={() => connect({ connector: metamaskConnector })}
+                disabled={isPending}
+              >
+                <Wallet className="w-5 h-5" aria-hidden />
+                {isPending ? "Connecting…" : "Connect Wallet"}
+              </Button>
+            ) : (
+              <Button
+                size="xl"
+                className="w-full sm:w-auto shadow-2xl shadow-gold/25"
+                aria-label="Browse the collection"
+                onClick={() => document.getElementById("collection")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                <Wallet className="w-5 h-5" aria-hidden />
+                Browse Collection
+              </Button>
+            )}
+            <a
+              href="https://sepolia.etherscan.io/address/0x4fe1a696F3d826B9bcb7E616a81762c709DD5C47"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <Wallet className="w-5 h-5" aria-hidden />
-              Connect Wallet
-            </Button>
-            <Button
-              variant="outline"
-              size="xl"
-              className="w-full sm:w-auto"
-              aria-label="View contract source code"
-            >
-              View Source
-              <ArrowRight className="w-4 h-4" aria-hidden />
-            </Button>
+              <Button
+                variant="outline"
+                size="xl"
+                className="w-full sm:w-auto"
+                aria-label="View contract on Etherscan"
+              >
+                View Contract
+                <ArrowRight className="w-4 h-4" aria-hidden />
+              </Button>
+            </a>
           </div>
 
           {/* Trust note */}
