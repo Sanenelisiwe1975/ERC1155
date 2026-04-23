@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Wallet, ArrowRight, Swords } from "lucide-react";
 import { useAccount, useConnect } from "wagmi";
@@ -9,6 +10,8 @@ export function CallToAction() {
   const { isConnected } = useAccount();
   const { connect, connectors, isPending } = useConnect();
   const metamaskConnector = connectors.find((c) => c.name === "MetaMask") ?? connectors[0];
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   return (
     <section
@@ -55,7 +58,7 @@ export function CallToAction() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            {!isConnected ? (
+            {!mounted || !isConnected ? (
               <Button
                 size="xl"
                 className="w-full sm:w-auto shadow-2xl shadow-gold/25"
