@@ -42,7 +42,7 @@ const abi = [
 
 const contract = new ethers.Contract(process.env.CONTRACT_ADDRESS, abi, wallet);
 
-app.get('/api', (req, res) => {
+app.get('/api', (_req, res) => {
   res.json({ message: 'ERC1155 API is running ✅', contract: process.env.CONTRACT_ADDRESS });
 });
 
@@ -102,13 +102,6 @@ app.get('/api/balance/:address/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-});
-
-const FRONTEND = path.join(__dirname, '../frontend/out');
-app.use(express.static(FRONTEND));
-
-app.get('/{*splat}', (_req, res) => {
-  res.sendFile(path.join(FRONTEND, 'index.html'));
 });
 
 const PORT = process.env.PORT || 5000;
