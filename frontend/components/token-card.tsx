@@ -65,7 +65,6 @@ export function TokenCard({ token, index }: TokenCardProps) {
           ? "shadow-lg shadow-violet-500/15 hover:shadow-2xl hover:shadow-violet-500/25"
           : "shadow-md hover:shadow-xl",
         token.glowColor,
-        isLegendary && "legendary-shimmer"
       )}
       aria-label={`${token.name} — ${token.rarity} ${token.type}`}
       tabIndex={0}
@@ -83,7 +82,8 @@ export function TokenCard({ token, index }: TokenCardProps) {
       <div
         className={cn(
           "relative flex items-center justify-center h-44 overflow-hidden",
-          `bg-gradient-to-br ${token.gradientFrom} ${token.gradientVia} to-transparent`
+          `bg-gradient-to-br ${token.gradientFrom} ${token.gradientVia} to-transparent`,
+          isLegendary && "legendary-shimmer"
         )}
       >
         {/* Background pattern */}
