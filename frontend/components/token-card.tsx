@@ -1,8 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, type LucideIcon } from "lucide-react";
+import { Sparkles, type LucideIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { MintModal } from "@/components/mint-modal";
 import { cn } from "@/lib/utils";
 
 export interface TokenData {
@@ -39,6 +42,7 @@ const typeBadgeVariant: Record<string, "currency" | "weapon" | "armor"> = {
 
 export function TokenCard({ token, index }: TokenCardProps) {
   const isLegendary = token.rarity === "Legendary";
+  const [mintOpen, setMintOpen] = useState(false);
 
   return (
     <motion.article
@@ -165,12 +169,21 @@ export function TokenCard({ token, index }: TokenCardProps) {
           ))}
         </div>
 
-        {/* Hover CTA */}
-        <div className="flex items-center gap-2 text-sm font-medium opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-          <span style={{ color: token.color }}>View Details</span>
-          <ArrowRight className="w-3.5 h-3.5" style={{ color: token.color }} aria-hidden />
-        </div>
+        {/* Mint button */}
+        <Button
+          className="w-full"
+          variant={isLegendary ? "legendary" : "default"}
+          onClick={(e) => { e.stopPropagation(); setMintOpen(true); }}
+          aria-label={`Mint ${token.name}`}
+        >
+          <Sparkles className="w-3.5 h-3.5" aria-hidden />
+          Mint {token.name}
+        </Button>
       </div>
+
+      {mintOpen && (
+        <MintModal token={token} onClose={() => setMintOpen(false)} />
+      )}
     </motion.article>
   );
 }
