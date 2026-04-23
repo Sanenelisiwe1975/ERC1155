@@ -2,6 +2,7 @@
 
 import { motion, type Transition } from "framer-motion";
 import { ArrowRight, Coins, Sword, Shield, Crown, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useAccount, useConnect } from "wagmi";
 import { Button } from "@/components/ui/button";
 
@@ -79,6 +80,8 @@ export function Hero() {
   const { isConnected } = useAccount();
   const { connect, connectors, isPending } = useConnect();
   const metamaskConnector = connectors.find((c) => c.name === "MetaMask") ?? connectors[0];
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   return (
     <section
@@ -170,7 +173,7 @@ export function Hero() {
                 Explore Collection
                 <ArrowRight className="w-4 h-4" aria-hidden />
               </Button>
-              {!isConnected && (
+              {mounted && !isConnected && (
                 <Button
                   variant="outline"
                   size="lg"
